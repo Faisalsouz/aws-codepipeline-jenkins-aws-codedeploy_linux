@@ -1,32 +1,21 @@
+%h1 I am a big header
+%h2 Slightly smaller header
+%h3 An even smaller header
 
-%html
-  %head
-    %meta{:charset => "utf-8"}
-      %title Sample Deployment
-      :css
-        body {
-          color: #ffffff;
-          background-color: #007f3f;
-          font-family: Arial, sans-serif;
-          font-size: 13px;
-        }
-        
-        h1 {
-          font-size: 500%;
-          font-weight: normal;
-          margin-bottom: 0;
-        }
-        
-        h2 {
-          font-size: 200%;
-          font-weight: normal;
-          margin-bottom: 0;
-        }
-    %body
-    %div{:align => "center"}
-      %h1 Congratulations!
-      %h2 You have successfully completed the second tutorial for AWS CodePipeline.
-      %p
-        For next steps, read the
-        = succeed "." do
-          %a{:href => "http://docs.aws.amazon.com/codepipeline/latest/userguide/welcome.html"} AWS CodePipeline Documentation
+%span
+  I am inside a span element
+
+%div
+  A div element
+
+%p
+  A paragraph of text
+
+%ul
+  %li First unordered item
+  %li Second unordered item
+
+%table
+  %tr
+    %td I am Cell 1
+    %td I am Cell 2
