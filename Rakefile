@@ -1,28 +1,29 @@
 #!/usr/bin/env ruby
 
-require 'rake/testtask'
-require 'rubygems'
 require 'rake'
 require 'haml'
 
 task default: :compile
 
 task :compile do
-  FileList.new('./src/*.html.haml').each do |filename|
-    if filename =~ /([^\/]+)\.haml$/
-      File.open($1, 'w') do |f|
+  # Look for all .haml files in the current directory
+  FileList.new('./*.haml').each do |filename|
+    # Get the name of the HTML file to be created
+    html_filename = filename.sub(/\.haml$/, '.html')
+    
+    # Render the HAML file and write to the corresponding HTML file
+    begin
+      File.open(html_filename, 'w') do |f|
         f.write Haml::Engine.new(File.read(filename)).render
       end
+      puts "Converted #{filename} to #{html_filename}."
+    rescue StandardError => e
+      puts "Error converting #{filename}: #{e.message}"
     end
   end
 end
 
 task :clean do
-  FileUtils.rm_r(Dir.glob("./*.html"), force: true)
-end
-
-task :test do 
-  Rake::TestTask.new do |t|
-    t.test_files = FileList['test/jenkins_sample_test.rb']
-  end
+  # Remove all HTML files generated
+  FileUtils.rm_f(Dir.glob('./*.html'))
 end
